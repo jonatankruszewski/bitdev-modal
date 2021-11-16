@@ -1,22 +1,25 @@
 ---
-description: 'A Modal component.'
-labels: ['label1', 'label2', 'label3']
+description: "A Modal component."
+labels: ["label1", "label2", "label3"]
 ---
 
-import { Modal } from './modal';
+import { Modal } from "./modal";
 
-## React Component for rendering text
+## React Component for rendering an empty modal
 
-A basic div that renders some text
+A modal that shows in the screen.
+Functionalities:
+
+- Closes on X, as well on click outside if set `clickAway=true`
+- Toggle the element by passing a boolean to `show`. This boolean value would probably be attached to a piece of state of the parent of this modal.
+- Pass a boolean to `backDrop` to switch between a faded background or a soft shadow.
 
 ### Component usage
+
+- Pass a react JSX element to render inside of it
+
 ```js
-<Modal text="hello from Modal" />
-```
-
-### Using props to customize the text
-
-Modify the text to see it change live:
-```js live
-<Modal text="hello from Modal" />
+<Modal show={true} backDrop={false} clickAway={true}>
+  <h1>Hello I am a child!</h1>
+</Modal>
 ```

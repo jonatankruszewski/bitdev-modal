@@ -5,8 +5,9 @@ import { PrimaryButton } from "./button.composition";
 import { Button, ButtonProps } from "./index";
 
 it("Should render with the correct text", () => {
-  const { getByText } = render(<PrimaryButton />);
-  const rendered = getByText("hello from Button");
+  const text = "Un, dos, tres, un pasito para adelante María";
+  const { getByText } = render(<PrimaryButton text={text} />);
+  const rendered = getByText(text);
   expect(rendered).toBeTruthy();
 });
 

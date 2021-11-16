@@ -12,7 +12,13 @@ export type ModalProps = {
    * Default: true
    */
   backDrop?: boolean;
-  children: JSX.Element;
+  /**
+   * Children elements to be rendered inside
+   */
+  children?: JSX.Element;
+  /**
+   * Enables / disables the behaviour of closing the modal by clicking outside of it.
+   */
   clickAway?: boolean;
 };
 
@@ -33,17 +39,20 @@ export function Modal({
   return (
     <div
       data-backdrop={backDrop}
+      data-testid='modal-container'
       className={styles.modal}
-      onClick={() => {
-        if (clickAway) setIsOpen(false);
-      }}>
+      onClick={() => clickAway && setIsOpen(false)}>
       <div
         onClick={e => e.stopPropagation()}
         data-backdrop={backDrop}
         className={styles.card}>
-        <span className={styles.close} onClick={toggleVisibility()}>
+        <button
+          className={styles.close}
+          data-testid='x-button'
+          role="button"
+          onClick={toggleVisibility()}>
           ✕
-        </span>
+        </button>
         {children &&
           React.cloneElement(children, {
             closeModal: () => setIsOpen(false),

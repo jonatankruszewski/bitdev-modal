@@ -1,16 +1,12 @@
 import React from "react";
 import { Button } from "./button";
 
-export const PrimaryButton = () => (
-  <Button
-    importance='primary'
-    text='hello from Button'
-    clickCallback={() => {
-      alert("Hello from button");
-    }}
-  />
-);
+export const PrimaryButton = ({
+  cb = () => alert("clicked!"),
+  text = "Hello from Primary",
+}) => <Button importance='primary' text={text} onClick={cb} />;
 
-export const SecondaryButton = () => (
-  <Button importance='secondary' text='hello from Button' />
-);
+export const SecondaryButton = ({
+  cb = () => alert("clicked!"),
+  text = "Hello from Secondary",
+}) => <Button importance='secondary' text={text} onClick={cb} />;

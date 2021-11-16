@@ -1,18 +1,22 @@
 ---
 description: "A Button component."
-labels: ["React", "Basic Button", "Data Variant"]
+labels: ["React Button", "Basic Button", "Data Variant"]
 ---
 
 import { Button } from "./button";
 
-## React Component for rendering text
-
-A basic Button
+## A button component that receives a function to get launched onClick
 
 ### Component usage
+
 importance: 'primary' | 'secondary'
 text: a string to be rendered
+onClick: function to launch onClick
 
 ```js live
-<Button importance='primary' text='hello from Button' />
+<Button
+  importance='primary'
+  text='hello from Button'
+  onClick={() => alert("Hello World")}
+/>
 ```

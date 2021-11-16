@@ -26,6 +26,7 @@ export function Button({ text, importance, onClick }: ButtonProps) {
         }
       }}
       data-testid='button'
+      role='button'
       data-variation={importance || "primary"}
       className={styles.button}>
       {text}
