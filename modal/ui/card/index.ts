@@ -1,2 +1,3 @@
-export { Card } from './card';
-export type { CardProps } from './card';
+export { Card } from "./card";
+export { BasicCard } from "./card.composition";
+export type { CardProps } from "./card";

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
+import { Modal } from "@jonakru/modal.ui.modal";
 import { Card } from "@jonakru/modal.ui.card";
-import { Button } from "@jonakru/modal.ui.button";
 
 export type ModalConfirmProps = {
   /**
@@ -14,40 +14,23 @@ export type ModalConfirmProps = {
   /**
    * a callback attached to the cancel button.
    */
-
+  title: string;
+  subTitle?: string;
   onCancel?: Function | undefined;
   children?: JSX.Element;
+  toggleVisibility?: any;
 };
 
-export function ModalConfirm({
-  text,
-  onCancel,
-  onConfirm,
-  children,
-}: ModalConfirmProps): JSX.Element {
+export function ModalConfirm(): JSX.Element {
   return (
-    <div>
-      <h2>Title</h2>
-      <h4>Subtitle</h4>
-      <p>{text}</p>
-      <Button
-        text='Cancel'
-        importance='secondary'
-        onClick={() => {
-          if (typeof onCancel === "function") onCancel();
-          setIsOpen(false);
-        }}
+    <Modal backDrop={true} show={true} clickAway={true}>
+      <Card
+        text='Hello'
+        title='Testing'
+        subTitle='Something'
+        onConfirm={() => alert("Success")}
+        onCancel={() => alert("Canceled")}
       />
-      <Button
-        onClick={() => {
-          onConfirm();
-          setIsOpen(false);
-        }}
-        text='Confirm'
-        importance='primary'
-      />
-      {children}
-      <Card text='Hello world mothefucke'></Card>
-    </div>
+    </Modal>
   );
 }

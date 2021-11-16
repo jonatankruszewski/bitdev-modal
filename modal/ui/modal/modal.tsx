@@ -12,14 +12,14 @@ export type ModalProps = {
    * Default: true
    */
   backDrop?: boolean;
-  children?: JSX.Element;
+  children: JSX.Element;
   clickAway?: boolean;
 };
 
 export function Modal({
   backDrop = true,
   show = false,
-  clickAway = false,
+  clickAway = true,
   children,
 }: ModalProps): JSX.Element | null {
   const [isOpen, setIsOpen] = useState(show);
@@ -32,19 +32,22 @@ export function Modal({
 
   return (
     <div
-      data-backDrop={backDrop}
+      data-backdrop={backDrop}
       className={styles.modal}
       onClick={() => {
         if (clickAway) setIsOpen(false);
       }}>
       <div
         onClick={e => e.stopPropagation()}
-        data-backDrop={backDrop}
+        data-backdrop={backDrop}
         className={styles.card}>
         <span className={styles.close} onClick={toggleVisibility()}>
           ✕
         </span>
-        {children}
+        {children &&
+          React.cloneElement(children, {
+            closeModal: () => setIsOpen(false),
+          })}
       </div>
     </div>
   );
