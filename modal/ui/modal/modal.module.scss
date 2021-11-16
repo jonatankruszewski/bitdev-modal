@@ -1,4 +1,7 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500&display=swap");
+
 .modal {
+  font-family: "Poppins", sans-serif;
   box-sizing: border-box;
   display: flex;
   justify-content: center;
@@ -14,8 +17,9 @@
 }
 
 .card {
-  border: 1px solid gray;
-  padding: 2em;
+  font-family: "Poppins", sans-serif;
+  border: 1px solid rgb(206, 206, 206);
+  padding: 1em;
   min-width: 250px;
   min-height: 140px;
   border-radius: 10px;

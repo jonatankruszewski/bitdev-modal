@@ -8,6 +8,7 @@ export const BasicModal = () => (
     //
     backDrop={false}
     text='hello from Modal'
-    show={true}
-  />
+    show={true}>
+    <h1>Hi! I am a children </h1>
+  </Modal>
 );
