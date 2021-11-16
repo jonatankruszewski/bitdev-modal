@@ -9,11 +9,23 @@
  */
 
 {
+    "ui/card": {
+        "scope": "",
+        "version": "",
+        "mainFile": "index.ts",
+        "rootDir": "modal/ui/card"
+    },
     "ui/modal": {
         "scope": "",
         "version": "",
         "mainFile": "index.ts",
         "rootDir": "modal/ui/modal"
+    },
+    "ui/modal-confirm": {
+        "scope": "",
+        "version": "",
+        "mainFile": "index.ts",
+        "rootDir": "modal/ui/modal-confirm"
     },
     "$schema-version": "14.9.0"
 }
