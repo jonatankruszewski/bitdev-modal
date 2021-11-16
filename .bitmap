@@ -9,6 +9,12 @@
  */
 
 {
+    "ui/button": {
+        "scope": "",
+        "version": "",
+        "mainFile": "index.ts",
+        "rootDir": "modal/ui/button"
+    },
     "ui/card": {
         "scope": "",
         "version": "",
