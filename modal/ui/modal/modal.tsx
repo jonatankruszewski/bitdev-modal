@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useContext } from "react";
+import React, { ReactNode } from "react";
 import styles from "./modal.module.scss";
 import { ContextContext, ContextProvider } from "@jonakru/modal.ui.context";
 export type ModalProps = {
@@ -15,7 +15,7 @@ export type ModalProps = {
   /**
    * Children elements to be rendered inside
    */
-  children?: JSX.Element;
+  children?: ReactNode;
   /**
    * Enables / disables the behaviour of closing the modal by clicking outside of it.
    */

@@ -6,9 +6,8 @@ export type ContextProviderProps = {
    * Toggles the modal
    */
   show?: boolean;
-
   /**
-   * children to be rendered within this theme.
+   * children to be rendered within this context.
    */
   children: ReactNode;
 };

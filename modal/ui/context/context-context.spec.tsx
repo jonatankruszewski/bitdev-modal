@@ -1,8 +1,8 @@
-import { BasicThemeUsage } from './context-context.composition';
-import { render } from '@testing-library/react';
+import { BasicThemeUsage } from "./context-context.composition";
+import { render } from "@testing-library/react";
 
-it('should render the button in the color blue', () => {
+it("should render the button in the color blue", () => {
   const { getByText } = render(<BasicThemeUsage />);
-  const rendered = getByText('this should be blue');
+  const rendered = getByText("this should be blue");
   expect(rendered).toBeTruthy();
 });

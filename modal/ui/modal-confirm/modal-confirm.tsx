@@ -1,6 +1,5 @@
-import React, { useEffect, useState, useContext } from "react";
+import React, { ReactNode } from "react";
 import { Modal } from "@jonakru/modal.ui.modal";
-import { Card } from "@jonakru/modal.ui.card";
 import { Button } from "@jonakru/modal.ui.button";
 import { ContextContext } from "@jonakru/modal.ui.context";
 
@@ -13,26 +12,11 @@ export type ModalConfirmProps = {
    * an optional callback attached to the cancel button.
    */
   onCancel?: Function | undefined;
-  closeModal?: Function;
-  children?: JSX.Element;
+  children?: ReactNode;
 };
 
 export function ModalConfirm({ children, onCancel, onConfirm }): JSX.Element {
-  const contextito = useContext(ContextContext);
-  const onConfirmButton = () => {
-    if (typeof onCancel === "function") onConfirm();
-    alert(JSON.stringify(contextito));
-    // closeModal();
-  };
-
-  const onCancelButton = () => {};
-
-  useEffect(() => {
-    setTimeout(() => console.log(contextito), 300);
-  }, []);
-
   return (
-    // <div>Hello</div>
     <Modal backDrop={true} show={true} clickAway={true}>
       <ContextContext.Consumer>
         {({ closeModal }) => (
