@@ -12,28 +12,58 @@ export type ModalConfirmProps = {
    * an optional callback attached to the cancel button.
    */
   onCancel?: Function | undefined;
+  /**
+   * shows / hides the modal.
+   * Default: true
+   */
+  show?: boolean;
+  /**
+   * A faded black background to highlight the modal.
+   * Default: true
+   */
+  backDrop?: boolean;
+  /**
+   * Enables / disables the behaviour of closing the modal by clicking outside of it.
+   * Default: true
+   */
+  clickAway?: boolean;
+  /**
+   * Enables / disables the cancel button.
+   * Default: true
+   */
+  showCancel?: boolean;
   children?: ReactNode;
 };
 
-export function ModalConfirm({ children, onCancel, onConfirm }): JSX.Element {
+export function ModalConfirm({
+  children,
+  onCancel,
+  onConfirm,
+  backDrop = true,
+  show = true,
+  clickAway = true,
+  showCancel = true,
+}): JSX.Element {
   return (
-    <Modal backDrop={true} show={true} clickAway={true}>
+    <Modal backDrop={backDrop} show={show} clickAway={clickAway}>
       <ContextContext.Consumer>
         {({ closeModal }) => (
           <>
             {children}
             <div className={styles.wrapper}>
+              {showCancel && (
+                <Button
+                  text='Cancel'
+                  importance='secondary'
+                  onClick={() => {
+                    if (typeof onCancel === "function") onCancel();
+                    closeModal();
+                  }}
+                />
+              )}
               <Button
-                text='Cancel'
-                importance='secondary'
                 onClick={() => {
-                  if (typeof onCancel === "function") onCancel();
-                  closeModal();
-                }}
-              />
-              <Button
-                onClick={() => {
-                  if (typeof onConfirm === "function") onConfirm();
+                  onConfirm();
                   closeModal();
                 }}
                 text='Confirm'

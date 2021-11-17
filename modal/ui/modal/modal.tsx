@@ -4,7 +4,7 @@ import { ContextContext, ContextProvider } from "@jonakru/modal.ui.context";
 export type ModalProps = {
   /**
    * shows / hides the modal.
-   * Default: false
+   * Default: true
    */
   show?: boolean;
   /**
@@ -13,19 +13,20 @@ export type ModalProps = {
    */
   backDrop?: boolean;
   /**
+   * Enables / disables the behaviour of closing the modal by clicking outside of it.
+   * Default: true
+   */
+  clickAway?: boolean;
+  /**
    * Children elements to be rendered inside
    */
   children?: ReactNode;
-  /**
-   * Enables / disables the behaviour of closing the modal by clicking outside of it.
-   */
-  clickAway?: boolean;
 };
 
 export function Modal({
   backDrop = true,
   clickAway = true,
-  show = false,
+  show = true,
   children,
 }: ModalProps): JSX.Element | null {
   return (
