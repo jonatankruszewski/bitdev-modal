@@ -1,6 +1,7 @@
 import React from "react";
 import { render } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
+import "@testing-library/dom";
 import { PrimaryButton } from "./button.composition";
 import { Button, ButtonProps } from "./index";
 
