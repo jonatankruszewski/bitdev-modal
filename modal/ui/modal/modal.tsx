@@ -1,6 +1,10 @@
-import React, { ReactNode } from "react";
+import React, { ReactNode, useEffect, useState, useContext } from "react";
 import styles from "./modal.module.scss";
-import { ContextContext, ContextProvider } from "@jonakru/modal.ui.context";
+import {
+  ContextContext,
+  ContextProvider,
+  ContextContextType,
+} from "@jonakru/modal.ui.context";
 export type ModalProps = {
   /**
    * shows / hides the modal.
@@ -24,39 +28,44 @@ export type ModalProps = {
 };
 
 export function Modal({
+  show = true,
   backDrop = true,
   clickAway = true,
-  show = true,
   children,
 }: ModalProps): JSX.Element | null {
+  const [isOpen, setIsOpen] = useState(show);
+  const closeModal = () => setIsOpen(false);
+  const openModal = () => setIsOpen(true);
+
   return (
-    <ContextProvider show={show}>
-      <ContextContext.Consumer>
-        {({ closeModal, isOpen }) => {
-          if (!isOpen) return null;
-          return (
-            <div
-              data-backdrop={backDrop}
-              data-testid='modal-container'
-              className={styles.modal}
-              onClick={() => clickAway && closeModal()}>
-              <div
-                onClick={e => e.stopPropagation()}
-                data-backdrop={backDrop}
-                className={styles.card}>
-                <button
-                  className={styles.close}
-                  data-testid='x-button'
-                  role='button'
-                  onClick={() => closeModal()}>
-                  ✕
-                </button>
-                {children}
-              </div>
-            </div>
-          );
-        }}
-      </ContextContext.Consumer>
-    </ContextProvider>
+    <ContextContext.Provider
+      value={{
+        closeModal: closeModal,
+        openModal: openModal,
+        isOpen: isOpen,
+        setIsOpen: setIsOpen,
+      }}>
+      {isOpen && (
+        <div
+          data-backdrop={backDrop}
+          data-testid='modal-container'
+          className={styles.modal}
+          onClick={() => clickAway && closeModal()}>
+          <div
+            onClick={e => e.stopPropagation()}
+            data-backdrop={backDrop}
+            className={styles.card}>
+            <button
+              className={styles.close}
+              data-testid='x-button'
+              role='button'
+              onClick={() => closeModal()}>
+              ✕
+            </button>
+            {children}
+          </div>
+        </div>
+      )}
+    </ContextContext.Provider>
   );
 }
