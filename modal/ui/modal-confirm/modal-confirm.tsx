@@ -43,7 +43,7 @@ export function ModalConfirm({
   show = true,
   clickAway = true,
   showCancel = true,
-}): JSX.Element {
+}: ModalConfirmProps): JSX.Element {
   return (
     <Modal backDrop={backDrop} show={show} clickAway={clickAway}>
       <ContextContext.Consumer>
