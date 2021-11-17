@@ -11,31 +11,31 @@
 {
     "ui/button": {
         "scope": "",
-        "version": "",
+        "version": "1.0.1",
         "mainFile": "index.ts",
         "rootDir": "modal/ui/button"
     },
     "ui/card": {
         "scope": "",
-        "version": "",
+        "version": "1.0.1",
         "mainFile": "index.ts",
         "rootDir": "modal/ui/card"
     },
     "ui/context": {
         "scope": "",
-        "version": "",
+        "version": "1.0.1",
         "mainFile": "index.ts",
         "rootDir": "modal/ui/context"
     },
     "ui/modal": {
         "scope": "",
-        "version": "",
+        "version": "1.0.1",
         "mainFile": "index.ts",
         "rootDir": "modal/ui/modal"
     },
     "ui/modal-confirm": {
         "scope": "",
-        "version": "",
+        "version": "1.0.1",
         "mainFile": "index.ts",
         "rootDir": "modal/ui/modal-confirm"
     },
