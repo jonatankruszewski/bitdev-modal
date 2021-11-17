@@ -1,17 +1,10 @@
-import React from "react";
+import React, { ReactNode } from "react";
 import { render } from "@testing-library/react";
 import { BasicModalConfirm } from "./modal-confirm.composition";
 import { ModalConfirm, ModalConfirmProps } from "./modal-confirm";
 import userEvent from "@testing-library/user-event";
 
-jest.mock("@jonakru/modal.ui.card", () => ({
-  __esModule: true,
-  default: "mockedDefaultExport",
-  Card: () => <div>Mocked Child</div>,
-}));
-
 let props: ModalConfirmProps;
-
 beforeEach(() => {
   props = {
     showCancel: true,
@@ -23,7 +16,7 @@ beforeEach(() => {
 
 it("should render with the correct text", () => {
   const { getByText } = render(<BasicModalConfirm />);
-  const rendered = getByText("Mocked Child");
+  const rendered = getByText("Testing");
   expect(rendered).toBeTruthy();
 });
 
