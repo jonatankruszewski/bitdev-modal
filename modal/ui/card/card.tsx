@@ -1,4 +1,4 @@
-import React from "react";
+import React, { ReactNode } from "react";
 export type CardProps = {
   /**
    * The paragraph content of the card.
@@ -12,7 +12,7 @@ export type CardProps = {
    * The card subtitle.
    */
   subTitle?: string;
-  children?: JSX.Element;
+  children?: ReactNode;
 };
 
 export function Card({
@@ -22,11 +22,11 @@ export function Card({
   children,
 }: CardProps): JSX.Element {
   return (
-    <div>
+    <>
       <h2>{title}</h2>
       {subTitle && <h4>{subTitle}</h4>}
       <p>{text}</p>
       {children}
-    </div>
+    </>
   );
 }

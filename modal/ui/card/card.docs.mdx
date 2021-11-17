@@ -5,9 +5,8 @@ labels: ["Card", "React Card"]
 
 import { Card } from "./card";
 
-## React Component for rendering text with hierarchy
-
-A basic div that renders some text
+## React Component for rendering a basic card.
+Accepts a title, subtitle and a paragraph text, as well as children.
 
 ### Component usage
 
@@ -15,6 +14,8 @@ A basic div that renders some text
 <Card
   title='React is awesome'
   subTitle='Also TypeScript'
-  text='hello from Card'
-/>
+  text='Hello from Card'
+>
+<div>Hello I am a child</div>
+</Card>
 ```
