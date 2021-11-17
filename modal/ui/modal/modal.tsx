@@ -1,5 +1,7 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import styles from "./modal.module.scss";
+import { ModalContextProvider } from "@jonakru/modal.modal-context/modal-context-provider";
+import { ModalContext } from "@jonakru/modal.modal-context/modal-context";
 
 export type ModalProps = {
   /**
@@ -28,36 +30,33 @@ export function Modal({
   clickAway = true,
   children,
 }: ModalProps): JSX.Element | null {
-  const [isOpen, setIsOpen] = useState(show);
+  // const { isOpen, setIsOpen } = useContext(ModalContext);
+  // useEffect(() => setIsOpen(show), []);
 
-  const toggleVisibility = () => {
-    return (e: React.MouseEvent<HTMLInputElement>) => setIsOpen(!isOpen);
-  };
-
-  if (!isOpen) return null;
-
+  // if (!isOpen) return null;
   return (
-    <div
-      data-backdrop={backDrop}
-      data-testid='modal-container'
-      className={styles.modal}
-      onClick={() => clickAway && setIsOpen(false)}>
-      <div
-        onClick={e => e.stopPropagation()}
-        data-backdrop={backDrop}
-        className={styles.card}>
-        <button
-          className={styles.close}
-          data-testid='x-button'
-          role="button"
-          onClick={toggleVisibility()}>
-          ✕
-        </button>
-        {children &&
-          React.cloneElement(children, {
-            closeModal: () => setIsOpen(false),
-          })}
-      </div>
-    </div>
+    <ModalContext.Consumer>
+      {({ closeModal }) => (
+        <div
+          data-backdrop={backDrop}
+          data-testid='modal-container'
+          className={styles.modal}
+          onClick={() => clickAway && closeModal()}>
+          <div
+            onClick={e => e.stopPropagation()}
+            data-backdrop={backDrop}
+            className={styles.card}>
+            <button
+              className={styles.close}
+              data-testid='x-button'
+              role='button'
+              onClick={() => closeModal()}>
+              ✕
+            </button>
+            {children}
+          </div>
+        </div>
+      )}
+    </ModalContext.Consumer>
   );
 }

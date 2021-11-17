@@ -1,36 +1,40 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import { Modal } from "@jonakru/modal.ui.modal";
 import { Card } from "@jonakru/modal.ui.card";
-
+import { Button } from "@jonakru/modal.ui.button";
+import { ModalContext } from "@jonakru/modal.modal-context/modal-context";
 export type ModalConfirmProps = {
-  /**
-   * a text to be rendered in the component.
-   */
-  text: string;
   /**
    * a success callback attached to the confirm button.
    */
   onConfirm: Function;
   /**
-   * a callback attached to the cancel button.
+   * an optional callback attached to the cancel button.
    */
-  title: string;
-  subTitle?: string;
   onCancel?: Function | undefined;
+  closeModal?: Function;
   children?: JSX.Element;
-  toggleVisibility?: any;
 };
 
-export function ModalConfirm(): JSX.Element {
+export function ModalConfirm({ children, onCancel, onConfirm }): JSX.Element {
+  const { isOpen, closeModal } = useContext(ModalContext);
+  const onConfirmButton = () => {
+    if (typeof onCancel === "function") onConfirm();
+    closeModal();
+  };
+
+  const onCancelButton = () => {
+    if (typeof onCancel === "function") onCancel();
+    closeModal();
+  };
+
   return (
     <Modal backDrop={true} show={true} clickAway={true}>
-      <Card
-        text='Hello'
-        title='Testing'
-        subTitle='Something'
-        onConfirm={() => alert("Success")}
-        onCancel={() => alert("Canceled")}
-      />
+      <>
+        {children}
+        <Button text='Cancel' importance='secondary' onClick={onCancelButton} />
+        <Button onClick={onConfirmButton} text='Confirm' importance='primary' />
+      </>
     </Modal>
   );
 }

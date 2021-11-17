@@ -9,6 +9,12 @@
  */
 
 {
+    "modal-context": {
+        "scope": "",
+        "version": "",
+        "mainFile": "index.ts",
+        "rootDir": "modal/modal-context"
+    },
     "ui/button": {
         "scope": "",
         "version": "",
