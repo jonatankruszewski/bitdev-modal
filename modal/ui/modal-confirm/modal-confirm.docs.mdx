@@ -1,22 +1,30 @@
 ---
-description: 'A ModalConfirm component.'
-labels: ['label1', 'label2', 'label3']
+description: "A Modal Confirm component."
+labels: ["Modal", "Modal Confirm", "React Modal", "React Modal Confirm"]
 ---
 
-import { ModalConfirm } from './modal-confirm';
+import { ModalConfirm } from "./modal-confirm";
 
-## React Component for rendering text
+## React Component for rendering a modal. Has both a confirm and an optional cancel button.
 
-A basic div that renders some text
+The confirm and cancel button can receive callbacks to be executed onClick
+
+Other properties that can be set:
+
+show: shows/hides the modal;
+backDrop: A faded black background to highlight the modal.
+clickAway: Enables / disables the behaviour of closing the modal by clicking outside of it.
+showCancel?: Enables / disables the cancel button.
+a
 
 ### Component usage
-```js
-<ModalConfirm text="hello from ModalConfirm" />
-```
 
-### Using props to customize the text
-
-Modify the text to see it change live:
-```js live
-<ModalConfirm text="hello from ModalConfirm" />
+```tsx
+<ModalConfirm
+  backDrop:false
+  clickAway:false
+  onConfirm:{()=>alert('Confirm')}
+  onCancel:{()=>alert('Cancel')}>
+  <div>Is 6 by 2 equal to 12?</div>
+</ModalConfirm>
 ```
