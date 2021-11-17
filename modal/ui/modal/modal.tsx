@@ -1,8 +1,6 @@
 import React, { useEffect, useState, useContext } from "react";
 import styles from "./modal.module.scss";
-import { ModalContextProvider } from "@jonakru/modal.modal-context/modal-context-provider";
-import { ModalContext } from "@jonakru/modal.modal-context/modal-context";
-
+import { ContextContext, ContextProvider } from "@jonakru/modal.ui.context";
 export type ModalProps = {
   /**
    * shows / hides the modal.
@@ -26,37 +24,35 @@ export type ModalProps = {
 
 export function Modal({
   backDrop = true,
-  show = false,
   clickAway = true,
+  show = false,
   children,
 }: ModalProps): JSX.Element | null {
-  // const { isOpen, setIsOpen } = useContext(ModalContext);
-  // useEffect(() => setIsOpen(show), []);
-
-  // if (!isOpen) return null;
   return (
-    <ModalContext.Consumer>
-      {({ closeModal }) => (
-        <div
-          data-backdrop={backDrop}
-          data-testid='modal-container'
-          className={styles.modal}
-          onClick={() => clickAway && closeModal()}>
+    <ContextProvider show={show}>
+      <ContextContext.Consumer>
+        {({ closeModal }) => (
           <div
-            onClick={e => e.stopPropagation()}
             data-backdrop={backDrop}
-            className={styles.card}>
-            <button
-              className={styles.close}
-              data-testid='x-button'
-              role='button'
-              onClick={() => closeModal()}>
-              ✕
-            </button>
-            {children}
+            data-testid='modal-container'
+            className={styles.modal}
+            onClick={() => clickAway && closeModal()}>
+            <div
+              onClick={e => e.stopPropagation()}
+              data-backdrop={backDrop}
+              className={styles.card}>
+              <button
+                className={styles.close}
+                data-testid='x-button'
+                role='button'
+                onClick={() => closeModal()}>
+                ✕
+              </button>
+              {children}
+            </div>
           </div>
-        </div>
-      )}
-    </ModalContext.Consumer>
+        )}
+      </ContextContext.Consumer>
+    </ContextProvider>
   );
 }

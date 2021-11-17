@@ -1,11 +1,11 @@
 ---
-description: ModalContext context.
-labels: ["context"]
+description: Context context.
+labels: ['context']
 ---
 
-import { ModalContextContext } from "./modal-context";
-import { ModalContextProvider } from "./modal-context-provider";
-import { MockComponent } from "./modal-context.composition";
+import { ContextContext } from './context-context';
+import { ContextProvider } from './context-context-provider';
+import { MockComponent } from './context-context.composition';
 
 ## React Theme Context
 
@@ -17,13 +17,13 @@ Use this component to apply a theme as a context to set on it's children.
 ```tsx
 () => {
 import React, { useContext } from 'react';
-import { ModalContextProvider } from './modal-context-provider';
-import { ModalContext } from './modal-context';
+import { ThemeProvider } from './theme-context-provider';
+import { ThemeContext } from './theme-context';
 
-<ModalContextProvider isOpen=true>
+<ContextProvider color="blue">
   // My lovely children now get a theme!
   <MockComponent />
-</ModalContextProvider>;
+</ContextProvider>;
 ```
 
 ### Using props to customize the theme
@@ -33,9 +33,9 @@ Change the color to see the text change:
 ```tsx live
 () => {
   return (
-    <ModalContextProvider color='red'>
+    <ContextProvider color="red">
       <MockComponent />
-    </ModalContextProvider>
+    </ContextProvider>
   );
 };
 ```

@@ -1,4 +1,4 @@
-import { BasicThemeUsage } from './modal-context.composition';
+import { BasicThemeUsage } from './context-context.composition';
 import { render } from '@testing-library/react';
 
 it('should render the button in the color blue', () => {

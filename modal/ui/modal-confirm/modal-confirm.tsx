@@ -2,7 +2,8 @@ import React, { useEffect, useState, useContext } from "react";
 import { Modal } from "@jonakru/modal.ui.modal";
 import { Card } from "@jonakru/modal.ui.card";
 import { Button } from "@jonakru/modal.ui.button";
-import { ModalContext } from "@jonakru/modal.modal-context/modal-context";
+import { ContextContext } from "@jonakru/modal.ui.context";
+
 export type ModalConfirmProps = {
   /**
    * a success callback attached to the confirm button.
@@ -17,24 +18,45 @@ export type ModalConfirmProps = {
 };
 
 export function ModalConfirm({ children, onCancel, onConfirm }): JSX.Element {
-  const { isOpen, closeModal } = useContext(ModalContext);
+  const contextito = useContext(ContextContext);
   const onConfirmButton = () => {
     if (typeof onCancel === "function") onConfirm();
-    closeModal();
+    alert(JSON.stringify(contextito));
+    // closeModal();
   };
 
-  const onCancelButton = () => {
-    if (typeof onCancel === "function") onCancel();
-    closeModal();
-  };
+  const onCancelButton = () => {};
+
+  useEffect(() => {
+    setTimeout(() => console.log(contextito), 300);
+  }, []);
 
   return (
+    // <div>Hello</div>
     <Modal backDrop={true} show={true} clickAway={true}>
-      <>
-        {children}
-        <Button text='Cancel' importance='secondary' onClick={onCancelButton} />
-        <Button onClick={onConfirmButton} text='Confirm' importance='primary' />
-      </>
+      <ContextContext.Consumer>
+        {({ closeModal }) => (
+          <>
+            {children}
+            <Button
+              text='Cancel'
+              importance='secondary'
+              onClick={() => {
+                if (typeof onCancel === "function") onCancel();
+                closeModal();
+              }}
+            />
+            <Button
+              onClick={() => {
+                if (typeof onConfirm === "function") onConfirm();
+                closeModal();
+              }}
+              text='Confirm'
+              importance='primary'
+            />
+          </>
+        )}
+      </ContextContext.Consumer>
     </Modal>
   );
 }

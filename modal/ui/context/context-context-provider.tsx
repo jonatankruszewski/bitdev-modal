@@ -1,15 +1,19 @@
 import React, { ReactNode, useState } from "react";
-import { ModalContext } from "./modal-context";
+import { ContextContext } from "./context-context";
 
-export type ModalContextProviderProps = {
-  children: ReactNode;
+export type ContextProviderProps = {
+  /**
+   * Toggles the modal
+   */
   show?: boolean;
+
+  /**
+   * children to be rendered within this theme.
+   */
+  children: ReactNode;
 };
 
-export function ModalContextProvider({
-  children,
-  show = false,
-}: ModalContextProviderProps) {
+export function ContextProvider({ children, show }: ContextProviderProps) {
   const [isOpen, setIsOpen] = useState(show);
   const closeModal = () => setIsOpen(false);
   const openModal = () => setIsOpen(true);
@@ -20,11 +24,11 @@ export function ModalContextProvider({
     isOpen: isOpen,
     setIsOpen: setIsOpen,
   };
-
   if (!isOpen) return null;
+
   return (
-    <ModalContext.Provider value={{ ...options }}>
+    <ContextContext.Provider value={options}>
       {children}
-    </ModalContext.Provider>
+    </ContextContext.Provider>
   );
 }
