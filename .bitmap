@@ -10,31 +10,31 @@
 
 {
     "ui/button": {
-        "scope": "",
+        "scope": "jonakru.modal",
         "version": "1.0.1",
         "mainFile": "index.ts",
         "rootDir": "modal/ui/button"
     },
     "ui/card": {
-        "scope": "",
+        "scope": "jonakru.modal",
         "version": "1.0.1",
         "mainFile": "index.ts",
         "rootDir": "modal/ui/card"
     },
     "ui/context": {
-        "scope": "",
+        "scope": "jonakru.modal",
         "version": "1.0.1",
         "mainFile": "index.ts",
         "rootDir": "modal/ui/context"
     },
     "ui/modal": {
-        "scope": "",
+        "scope": "jonakru.modal",
         "version": "1.0.1",
         "mainFile": "index.ts",
         "rootDir": "modal/ui/modal"
     },
     "ui/modal-confirm": {
-        "scope": "",
+        "scope": "jonakru.modal",
         "version": "1.0.1",
         "mainFile": "index.ts",
         "rootDir": "modal/ui/modal-confirm"
