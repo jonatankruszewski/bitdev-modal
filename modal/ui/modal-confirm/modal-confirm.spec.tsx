@@ -4,7 +4,11 @@ import { BasicModalConfirm } from "./modal-confirm.composition";
 import { ModalConfirm, ModalConfirmProps } from "./modal-confirm";
 import userEvent from "@testing-library/user-event";
 
-jest.mock("../card/card.tsx", () => () => <div>Mocked Child</div>);
+jest.mock("@jonakru/modal.ui.card", () => ({
+  __esModule: true,
+  default: "mockedDefaultExport",
+  Card: () => <div>Mocked Child</div>,
+}));
 
 let props: ModalConfirmProps;
 
