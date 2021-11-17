@@ -14,7 +14,7 @@ it("Should render with the correct text", () => {
 test("Should call callback on click", () => {
   const props: ButtonProps = {
     importance: "primary",
-    onClick: jest.fn(function () {}),
+    onClick: jest.fn(),
     text: "Something to render",
   };
   const { getByText } = render(<Button {...props} />);
@@ -30,7 +30,7 @@ test("Should Render with the 'button' className", () => {
     onClick: jest.fn(function () {}),
     text: "Something to render",
   };
-  const { getByText, getByTestId } = render(<Button {...props} />);
+  const { getByText } = render(<Button {...props} />);
   const rendered = getByText(props.text);
   expect(rendered).toHaveClass("button");
 });

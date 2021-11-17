@@ -1,4 +1,4 @@
-import React from "react";
+import React, { ReactNode } from "react";
 import { render } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { Modal } from "./index";
@@ -9,7 +9,7 @@ it("Should render a child", () => {
     backDrop: false,
     clickAway: true,
     show: true,
-    children: MockComponent() as unknown as JSX.Element,
+    children: MockComponent() as unknown as ReactNode,
   };
   const { getAllByText } = render(<Modal {...props} />);
   const rendered = getAllByText("Hello World");
