@@ -21,10 +21,11 @@ a
 
 ```tsx
 <ModalConfirm
-  backDrop:false
-  clickAway:false
-  onConfirm:{()=>alert('Confirm')}
-  onCancel:{()=>alert('Cancel')}>
+  backDrop={false}
+  clickAway={false}
+  show={true}
+  onConfirm={() => alert("Confirm")}
+  onCancel={() => alert("Cancel")}>
   <div>Is 6 by 2 equal to 12?</div>
 </ModalConfirm>
 ```
