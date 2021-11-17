@@ -1,4 +1,4 @@
-import React, { ReactNode, useState } from "react";
+import React, { ReactNode, useState, useEffect } from "react";
 import { ContextContext } from "./context-context";
 
 export type ContextProviderProps = {
@@ -12,21 +12,22 @@ export type ContextProviderProps = {
   children: ReactNode;
 };
 
-export function ContextProvider({ children, show }: ContextProviderProps) {
+export function ContextProvider({
+  children,
+  show = true,
+}: ContextProviderProps) {
   const [isOpen, setIsOpen] = useState(show);
   const closeModal = () => setIsOpen(false);
   const openModal = () => setIsOpen(true);
 
-  const options = {
-    closeModal: closeModal,
-    openModal: openModal,
-    isOpen: isOpen,
-    setIsOpen: setIsOpen,
-  };
-  if (!isOpen) return null;
-
   return (
-    <ContextContext.Provider value={options}>
+    <ContextContext.Provider
+      value={{
+        closeModal: closeModal,
+        openModal: openModal,
+        isOpen: isOpen,
+        setIsOpen: setIsOpen,
+      }}>
       {children}
     </ContextContext.Provider>
   );

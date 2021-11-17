@@ -1,41 +1,32 @@
 ---
-description: Context context.
-labels: ['context']
+description: Modal's context.
+labels: ["Modal", "React Modal", "Context"]
 ---
 
-import { ContextContext } from './context-context';
-import { ContextProvider } from './context-context-provider';
-import { MockComponent } from './context-context.composition';
+import { ContextContext } from "./context-context";
+import { ContextProvider } from "./context-context-provider";
+import { MockComponent, BasicThemeUsage } from "./context-context.composition";
 
-## React Theme Context
+## React Modal Context
 
-This is a simple [React Context](https://reactjs.org/docs/context.html) shared as a Bit component.
-Use this component to apply a theme as a context to set on it's children.
+State management for the ui/modal component.
+
+This is a simple context to avoid drilling down properties to the ui/modal component or to consume its state and functions on childs that were rendered through props.children.
 
 ### Component usage
 
-```tsx
-() => {
-import React, { useContext } from 'react';
-import { ThemeProvider } from './theme-context-provider';
-import { ThemeContext } from './theme-context';
-
-<ContextProvider color="blue">
-  // My lovely children now get a theme!
-  <MockComponent />
-</ContextProvider>;
+```tsx live
+<div>
+  <ContextProvider>
+    <ContextContext.Consumer>
+      {({ isOpen }) => (
+        <div>Current isOpen Value: {JSON.stringify(isOpen)}</div>
+      )}
+    </ContextContext.Consumer>
+  </ContextProvider>
+</div>
 ```
 
-### Using props to customize the theme
-
-Change the color to see the text change:
-
 ```tsx live
-() => {
-  return (
-    <ContextProvider color="red">
-      <MockComponent />
-    </ContextProvider>
-  );
-};
+<BasicThemeUsage />
 ```

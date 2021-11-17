@@ -32,27 +32,30 @@ export function Modal({
   return (
     <ContextProvider show={show}>
       <ContextContext.Consumer>
-        {({ closeModal }) => (
-          <div
-            data-backdrop={backDrop}
-            data-testid='modal-container'
-            className={styles.modal}
-            onClick={() => clickAway && closeModal()}>
+        {({ closeModal, isOpen }) => {
+          if (!isOpen) return null;
+          return (
             <div
-              onClick={e => e.stopPropagation()}
               data-backdrop={backDrop}
-              className={styles.card}>
-              <button
-                className={styles.close}
-                data-testid='x-button'
-                role='button'
-                onClick={() => closeModal()}>
-                ✕
-              </button>
-              {children}
+              data-testid='modal-container'
+              className={styles.modal}
+              onClick={() => clickAway && closeModal()}>
+              <div
+                onClick={e => e.stopPropagation()}
+                data-backdrop={backDrop}
+                className={styles.card}>
+                <button
+                  className={styles.close}
+                  data-testid='x-button'
+                  role='button'
+                  onClick={() => closeModal()}>
+                  ✕
+                </button>
+                {children}
+              </div>
             </div>
-          </div>
-        )}
+          );
+        }}
       </ContextContext.Consumer>
     </ContextProvider>
   );
