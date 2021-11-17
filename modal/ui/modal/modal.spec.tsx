@@ -9,6 +9,9 @@ it("Should render a child", () => {
     backDrop: false,
     clickAway: true,
     show: true,
+    closeModal: jest.fn(function () {
+      this.show = false
+    }),
     children: MockComponent() as unknown as ReactNode,
   };
   const { getAllByText } = render(<Modal {...props} />);
@@ -22,6 +25,9 @@ it("Shouldn't be on screen when show is false", () => {
     backDrop: false,
     clickAway: true,
     show: false,
+    closeModal: jest.fn(function () {
+      this.show = false
+    })
   };
   const { queryByTestId } = render(<Modal {...props} />);
   const rendered = queryByTestId("modal-container");
@@ -33,10 +39,13 @@ it("Should Close on click on the X", () => {
     backDrop: false,
     clickAway: true,
     show: true,
+    closeModal: jest.fn()
   };
-  const { queryByRole } = render(<Modal {...props} />);
+  const { queryByRole, rerender } = render(<Modal {...props} />);
   let xButton = queryByRole("button", { name: "✕" });
   userEvent.click(xButton);
+  expect(props.closeModal).toHaveBeenCalledTimes(1);
+  rerender(<Modal {...props} show={false} />)
   xButton = queryByRole("button", { name: "✕" });
   expect(xButton).toBeNull();
 });
@@ -46,10 +55,13 @@ it("Should Close on click on the Background when clickAway is true", () => {
     backDrop: false,
     clickAway: true,
     show: true,
+    closeModal: jest.fn()
   };
-  const { queryByTestId } = render(<Modal {...props} />);
+  const { queryByTestId, rerender } = render(<Modal {...props} />);
   let background = queryByTestId("modal-container");
   userEvent.click(background);
+  expect(props.closeModal).toHaveBeenCalledTimes(1);
+  rerender(<Modal {...props} show={false} />)
   background = queryByTestId("modal-container");
   expect(background).toBeNull();
 });
@@ -59,10 +71,10 @@ it("Shouldn't Close on click on the Background when clickAway is false", () => {
     backDrop: false,
     clickAway: false,
     show: true,
+    closeModal: jest.fn()
   };
   const { queryByTestId } = render(<Modal {...props} />);
   let background = queryByTestId("modal-container");
   userEvent.click(background);
-  background = queryByTestId("modal-container");
-  expect(background).not.toBeNull();
+  expect(props.closeModal).not.toHaveBeenCalled();
 });

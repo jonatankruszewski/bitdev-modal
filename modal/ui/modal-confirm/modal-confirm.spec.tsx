@@ -9,6 +9,8 @@ beforeEach(() => {
   props = {
     showCancel: true,
     backDrop: true,
+    show: true,
+    closeModal: jest.fn(),
     onConfirm: jest.fn(),
     onCancel: jest.fn(),
   };
@@ -16,7 +18,7 @@ beforeEach(() => {
 
 it("should render with the correct text", () => {
   const { getByText } = render(<BasicModalConfirm />);
-  const rendered = getByText("Testing");
+  const rendered = getByText("Hello I am a child");
   expect(rendered).toBeTruthy();
 });
 

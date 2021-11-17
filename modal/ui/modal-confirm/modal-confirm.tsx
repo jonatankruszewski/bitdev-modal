@@ -1,4 +1,4 @@
-import React, { ReactNode } from "react";
+import React, { ReactNode, useContext, useEffect } from "react";
 import { Modal } from "@jonakru/modal.ui.modal";
 import { Button } from "@jonakru/modal.ui.button";
 import { ContextContext } from "@jonakru/modal.ui.context";
@@ -32,6 +32,10 @@ export type ModalConfirmProps = {
    * Default: true
    */
   showCancel?: boolean;
+  /**
+   * Callback to hide the modal
+   */
+  closeModal: Function;
   children?: ReactNode;
 };
 
@@ -39,15 +43,16 @@ export function ModalConfirm({
   children,
   onCancel,
   onConfirm,
+  closeModal,
   backDrop = true,
   show = true,
   clickAway = true,
   showCancel = true,
 }: ModalConfirmProps): JSX.Element {
   return (
-    <Modal backDrop={backDrop} show={show} clickAway={clickAway}>
+    <Modal closeModal={closeModal} backDrop={backDrop} show={show} clickAway={clickAway}>
       <ContextContext.Consumer>
-        {({ closeModal }) => (
+        {({ isOpen, closeModal }) => (
           <>
             {children}
             <div className={styles.wrapper}>

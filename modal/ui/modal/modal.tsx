@@ -1,10 +1,6 @@
-import React, { ReactNode, useEffect, useState, useContext } from "react";
+import React, { ReactNode, useState, useEffect } from "react";
 import styles from "./modal.module.scss";
-import {
-  ContextContext,
-  ContextProvider,
-  ContextContextType,
-} from "@jonakru/modal.ui.context";
+import { ContextContext } from "@jonakru/modal.ui.context";
 export type ModalProps = {
   /**
    * shows / hides the modal.
@@ -22,6 +18,10 @@ export type ModalProps = {
    */
   clickAway?: boolean;
   /**
+   * Callback to hide the modal
+   */
+  closeModal: Function;
+  /**
    * Children elements to be rendered inside
    */
   children?: ReactNode;
@@ -31,21 +31,16 @@ export function Modal({
   show = true,
   backDrop = true,
   clickAway = true,
+  closeModal,
   children,
 }: ModalProps): JSX.Element | null {
-  const [isOpen, setIsOpen] = useState(show);
-  const closeModal = () => setIsOpen(false);
-  const openModal = () => setIsOpen(true);
-
   return (
     <ContextContext.Provider
       value={{
         closeModal: closeModal,
-        openModal: openModal,
-        isOpen: isOpen,
-        setIsOpen: setIsOpen,
+        isOpen: show,
       }}>
-      {isOpen && (
+      {show && (
         <div
           data-backdrop={backDrop}
           data-testid='modal-container'

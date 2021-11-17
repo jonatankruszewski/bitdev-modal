@@ -1,11 +1,14 @@
-import React from "react";
+import React, { useState } from "react";
 import { ModalConfirm } from "./modal-confirm";
 import { Card } from "@jonakru/modal.ui.card";
 
-export const BasicModalConfirm = () => (
-  <ModalConfirm
+export const BasicModalConfirm = () => {
+  const [isOpen, setIsOpen] = useState(true);
+  return <ModalConfirm
+    show={isOpen}
+    closeModal={() => { setIsOpen(false) }}
     onCancel={() => alert("Cancel")}
     onConfirm={() => alert("Confirm")}>
-    <Card title='Testing' subTitle='Some Subtitle' text='text'></Card>
+    <div>Hello I am a child</div>
   </ModalConfirm>
-);
+};
