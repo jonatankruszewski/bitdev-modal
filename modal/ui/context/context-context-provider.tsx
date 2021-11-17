@@ -16,9 +16,13 @@ export function ContextProvider({
   children,
   show = true,
 }: ContextProviderProps) {
-  const [isOpen, setIsOpen] = useState(show);
+  const [isOpen, setIsOpen] = useState(false);
   const closeModal = () => setIsOpen(false);
   const openModal = () => setIsOpen(true);
+
+  useEffect(() => {
+    setIsOpen(show);
+  }, []);
 
   return (
     <ContextContext.Provider
